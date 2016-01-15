@@ -126,7 +126,7 @@ class StashSessionHandlerTest extends AbstractTest
              return new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler();
          });
 
-        $app->register(new \M1\StashSilex\StashServiceProvider(), array(
+            $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
                 'driver' => 'FileSystem',
                 'options' => array(
@@ -134,18 +134,18 @@ class StashSessionHandlerTest extends AbstractTest
                 ),
                 'session' => true
             )
-        ));
+            ));
 
-        $this->assertNull($app['session']->get('hello'));
+            $this->assertNull($app['session']->get('hello'));
 
-        $app['session']->set('hello', 'test');
-        $this->assertEquals('test', $app['session']->get('hello'));
+            $app['session']->set('hello', 'test');
+            $this->assertEquals('test', $app['session']->get('hello'));
 
-        $this->assertInstanceOf('\M1\StashSilex\StashSessionHandler', $app['session.storage.handler']);
-        $this->assertAttributeInstanceOf('\Stash\Pool', 'pool', $app['session.storage.handler']);
+            $this->assertInstanceOf('\M1\StashSilex\StashSessionHandler', $app['session.storage.handler']);
+            $this->assertAttributeInstanceOf('\Stash\Pool', 'pool', $app['session.storage.handler']);
 
-        $this->assertAttributeEquals(1800, 'ttl', $app['session.storage.handler']);
-        $this->assertAttributeEquals('sessions', 'prefix', $app['session.storage.handler']);
+            $this->assertAttributeEquals(1800, 'ttl', $app['session.storage.handler']);
+            $this->assertAttributeEquals('sessions', 'prefix', $app['session.storage.handler']);
     }
 
     public function testOverrideSessionHandlerWithNative()
