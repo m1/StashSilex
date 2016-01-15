@@ -10,11 +10,11 @@ class StashServiceProviderTest extends AbstractTest
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
-                'driver' => 'FileSystem',
+                'driver'  => 'FileSystem',
                 'options' => array(
-                    'path' => $this->tmp_folder
+                    'path' => $this->tmp_folder,
                 ),
-            )
+            ),
         ));
 
         $this->assertTrue($this->isDirEmpty($this->tmp_folder));
@@ -52,7 +52,7 @@ class StashServiceProviderTest extends AbstractTest
         $app = $this->app;
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
-            'pool.option' => array()
+            'pool.option' => array(),
         ));
 
         $this->assertAttributeInstanceOf('\Stash\Driver\Ephemeral', 'driver', $app['pool']);
@@ -63,7 +63,7 @@ class StashServiceProviderTest extends AbstractTest
         $app = $this->app;
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
-            'pools.option' => array()
+            'pools.option' => array(),
         ));
 
         $this->assertAttributeInstanceOf('\Stash\Driver\Ephemeral', 'driver', $app['pool']);
@@ -75,8 +75,8 @@ class StashServiceProviderTest extends AbstractTest
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pools.option' => array(
-                'e' => array()
-            )
+                'e' => array(),
+            ),
         ));
 
         $this->assertAttributeInstanceOf('\Stash\Driver\Ephemeral', 'driver', $app['pool']);
@@ -86,25 +86,25 @@ class StashServiceProviderTest extends AbstractTest
     {
         $app = $this->app;
 
-        $tmp_folder2 = __DIR__.'/tmp2';
+        $tmp_folder2 = __DIR__ . '/tmp2';
 
         $this->setupFolder($tmp_folder2);
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pools.options' => array(
                 'fs1' => array(
-                    'driver' => 'FileSystem',
+                    'driver'  => 'FileSystem',
                     'options' => array(
-                        'path' => $this->tmp_folder
+                        'path' => $this->tmp_folder,
                     ),
                 ),
                 'fs2' => array(
-                    'driver' => 'FileSystem',
+                    'driver'  => 'FileSystem',
                     'options' => array(
-                        'path' => $tmp_folder2
+                        'path' => $tmp_folder2,
                     ),
                 ),
-            )
+            ),
         ));
 
         $this->assertInstanceOf('\Pimple', $app['pools']);
@@ -134,7 +134,6 @@ class StashServiceProviderTest extends AbstractTest
 
         $item->set('test2', 1200);
 
-
         $item = $app['pools']['fs1']->getItem('hello');
         $data = $item->get();
         $this->assertFalse($item->isMiss());
@@ -162,13 +161,13 @@ class StashServiceProviderTest extends AbstractTest
                 'fs1' => array(
                     'driver'  => 'FileSystem',
                     'options' => array(
-                        'path' => $this->tmp_folder
+                        'path' => $this->tmp_folder,
                     ),
                 ),
-                'ep' => array(
-                    'driver'  => 'Ephemeral',
+                'ep'  => array(
+                    'driver' => 'Ephemeral',
                 ),
-            )
+            ),
         ));
 
         $this->assertAttributeInstanceOf('\Stash\Driver\FileSystem', 'driver', $app['pools']['fs1']);
@@ -180,7 +179,7 @@ class StashServiceProviderTest extends AbstractTest
         $app = $this->app;
 
         $app->register(new \Silex\Provider\MonologServiceProvider(), array(
-            'monolog.logfile' => $this->tmp_folder.'/stash.log',
+            'monolog.logfile' => $this->tmp_folder . '/stash.log',
         ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
@@ -188,11 +187,11 @@ class StashServiceProviderTest extends AbstractTest
                 'fs1' => array(
                     'driver'  => 'FileSystem',
                     'options' => array(
-                        'path' => $this->tmp_folder
+                        'path' => $this->tmp_folder,
                     ),
-                    'logger' => 'monolog'
-                )
-            )
+                    'logger'  => 'monolog',
+                ),
+            ),
         ));
 
         $this->assertAttributeInstanceOf('\Monolog\Logger', 'logger', $app['pools']['fs1']);
@@ -204,11 +203,29 @@ class StashServiceProviderTest extends AbstractTest
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
-                'logger' => ''
-            )
+                'logger' => '',
+            ),
         ));
 
         $this->assertAttributeEmpty('logger', $app['pool']);
+    }
+
+    public function testLoadingFromConfig()
+    {
+        $app = $this->app;
+
+        $app->register(new \M1\Vars\Provider\Silex\VarsServiceProvider(__DIR__ . '/stub/example.yml'), array(
+            'vars.options' => array(
+                'variables' => array(
+                    'dir' => __DIR__,
+                ),
+            )));
+
+            $app->register(new \M1\StashSilex\StashServiceProvider(), array(
+                'pools.options' => $app['vars']['pools'],
+            ));
+
+            $this->assertAttributeInstanceOf('\Stash\Driver\FileSystem', 'driver', $app['pools']['fs']);
     }
 
     /**
@@ -221,8 +238,8 @@ class StashServiceProviderTest extends AbstractTest
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
-                'driver'  => 'NONE',
-            )
+                'driver' => 'NONE',
+            ),
         ));
 
         $item = $app['pools']['fs1']->getItem('hello');
@@ -238,13 +255,12 @@ class StashServiceProviderTest extends AbstractTest
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
-                'logger' => 'monolog'
-            )
+                'logger' => 'monolog',
+            ),
         ));
 
         $item = $app['pool']->getItem('hello');
     }
-
 
     /**
      * @expectedException \InvalidArgumentException

@@ -231,7 +231,7 @@ $app->register(new M1\Vars\Provider\Silex\VarsServiceProvider('example.yml'), ar
 )));
     
 $app->register(new M1\StashSilex\StashServiceProvider(), array(
-    'pools.options' => $app['vars.pools']
+    'pools.options' => $app['vars']['pools']
 ));
 ```
 
@@ -264,9 +264,9 @@ If you discover any security related issues, please email hello@milescroxford.co
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/M1/StashSilex.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/m1/stash-silex.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/M1/StashSilex/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/m1/StashSilex/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/M1/StashSilex.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/M1/StashSilex.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/M1/StashSilex.svg?style=flat-square

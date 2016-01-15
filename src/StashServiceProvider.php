@@ -57,13 +57,13 @@ class StashServiceProvider implements ServiceProviderInterface
 
             $init = true;
 
-            $app['pools.options'] = $this->createOptions($app);
+            $app['pools.options'] = self::createOptions($app);
         });
 
         $app['pools'] = $app->share(function () use ($app) {
             $app['pools.options.init']();
 
-            return $this->createPools($app);
+            return self::createPools($app);
 
         });
 
@@ -108,7 +108,7 @@ class StashServiceProvider implements ServiceProviderInterface
      *
      * @return array $options The parsed options
      */
-    private function createOptions($app)
+    private static function createOptions($app)
     {
         if (!isset($app['pools.options'])) {
             $app['pools.options'] = array(
@@ -137,13 +137,13 @@ class StashServiceProvider implements ServiceProviderInterface
      *
      * @return \Pimple $pools The pools in the pimple container
      */
-    private function createPools($app)
+    private static function createPools($app)
     {
         $pools = new \Pimple();
 
         foreach ($app['pools.options'] as $name => $options) {
-            $pool = new \Stash\Pool($this->fetchDriver($options));
-            $pool->setLogger($this->fetchLogger($app, $options));
+            $pool = new \Stash\Pool(self::fetchDriver($options));
+            $pool->setLogger(self::fetchLogger($app, $options));
 
             $pools[$name] = $pools->share(function () use ($pool) {
                 return $pool;
@@ -163,7 +163,7 @@ class StashServiceProvider implements ServiceProviderInterface
      *
      * @return mixed Instance of the driver class
      */
-    private function fetchDriver($options)
+    private static function fetchDriver($options)
     {
         $driver = sprintf('Stash\Driver\%s', $options['driver']);
 
@@ -189,7 +189,7 @@ class StashServiceProvider implements ServiceProviderInterface
      *
      * @return mixed The logger service
      */
-    private function fetchLogger($app, $options)
+    private static function fetchLogger($app, $options)
     {
         if (isset($options['logger']) && $options['logger']) {
             $logger = $options['logger'];

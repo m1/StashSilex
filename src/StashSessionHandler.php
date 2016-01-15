@@ -125,6 +125,15 @@ class StashSessionHandler implements \SessionHandlerInterface
         return $this->pool;
     }
 
+    /**
+     * Return a Stash Pool item
+     *
+     * @param string $sessionId The sessionid
+     *
+     * @return \Stash\Item
+     *
+     * @codeCoverageIgnore
+     */
     private function getItem($sessionId)
     {
         return $this->pool->getItem(sprintf('%s/%s', $this->prefix, $sessionId));

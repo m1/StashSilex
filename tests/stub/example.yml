@@ -1,0 +1,8 @@
+pools:
+  fs:
+    driver: FileSystem
+    options:
+      path: %dir%/../../app/cache
+    session:
+      prefix: session_name
+      expiretime: 3200
