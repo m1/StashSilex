@@ -1,5 +1,5 @@
 {
-    "name": "M1/stash-silex",
+    "name": "m1/stash-silex",
     "description": "StashSilex is a service provider and session handler for the popular caching library Stash",
     "keywords": [
         "m1",
