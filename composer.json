@@ -1,6 +1,6 @@
 {
     "name": "m1/stash-silex",
-    "description": "StashSilex is a service provider and session handler for the popular caching library Stash",
+    "description": "StashSilex is a Silex service provider and session handler for the popular caching library Stash",
     "keywords": [
         "m1",
         "stashsilex",

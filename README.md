@@ -8,11 +8,11 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 <!--[![Total Downloads][ico-downloads]][link-downloads]-->
 
-StashSilex is a service provider and session handler for the popular caching library [Stash](http://www.stashphp.com/index.html).
+StashSilex is a [Silex](http://silex.sensiolabs.org/) service provider and session handler for the popular caching library [Stash](http://www.stashphp.com/index.html).
 
 ## Requirements
 
-StashSilex requires PHP version `5.3+`.
+StashSilex requires PHP version `5.3+`, Silex version `1.*` and Stash version `0.11+`
 
 ## Install
 
