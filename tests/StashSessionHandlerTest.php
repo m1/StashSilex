@@ -8,13 +8,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
@@ -44,13 +44,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
@@ -81,13 +81,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
@@ -114,13 +114,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
          $app['session.storage.handler'] = $app->share(function ($app) {
              return new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler();
@@ -152,13 +152,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pool.options' => array(
@@ -189,13 +189,13 @@ class StashSessionHandlerTest extends AbstractTest
     {
         $app = $this->app;
 
-        $app->register(new \Silex\Provider\SessionServiceProvider(), [
-            'session.storage.options' => [
+        $app->register(new \Silex\Provider\SessionServiceProvider(), array(
+            'session.storage.options' => array(
                 'name'            => 'Application',
                 'cookie_lifetime' => 0,
                 'cookie_httponly' => true,
-            ],
-        ]);
+            ),
+        ));
 
         $app->register(new \M1\StashSilex\StashServiceProvider(), array(
             'pools.options' => array(

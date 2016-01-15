@@ -77,7 +77,7 @@ class StashSessionHandler implements \SessionHandlerInterface
      */
     public function read($sessionId)
     {
-        $item = $this->pool->getItem(sprintf('%s/%s', $this->prefix, $sessionId));
+        $item = $this->getItem($sessionId);
         $data = $item->get();
 
         return (!$item->isMiss()) ? $data : '';
@@ -89,7 +89,7 @@ class StashSessionHandler implements \SessionHandlerInterface
      */
     public function write($sessionId, $data)
     {
-        $item = $this->pool->getItem(sprintf('%s/%s', $this->prefix, $sessionId));
+        $item = $this->getItem($sessionId);
         $item->lock();
 
         return $item->set($data, $this->ttl);
@@ -101,7 +101,7 @@ class StashSessionHandler implements \SessionHandlerInterface
      */
     public function destroy($sessionId)
     {
-        $item = $this->pool->getItem(sprintf('%s/%s', $this->prefix, $sessionId));
+        $item = $this->getItem($sessionId);
 
         return $item->clear();
     }
@@ -123,5 +123,10 @@ class StashSessionHandler implements \SessionHandlerInterface
     public function getPool()
     {
         return $this->pool;
+    }
+
+    private function getItem($sessionId)
+    {
+        return $this->pool->getItem(sprintf('%s/%s', $this->prefix, $sessionId));
     }
 }
