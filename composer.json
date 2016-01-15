@@ -42,7 +42,7 @@
         "squizlabs/php_codesniffer": "~2.3",
         "m1/vars": "~0.6",
         "monolog/monolog": "^1.17",
-        "symfony/yaml": "~3.0"
+        "symfony/yaml": "~2.8"
     },
     "autoload": {
         "psr-4": {
