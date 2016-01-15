@@ -271,8 +271,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/M1/StashSilex.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/M1/StashSilex.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/M1/StashSilex
-[link-travis]: https://travis-ci.org/M1/StashSilex
+[link-packagist]: https://packagist.org/packages/m1/stash-silex
+[link-travis]: https://travis-ci.org/m1/StashSilex
 [link-scrutinizer]: https://scrutinizer-ci.com/g/M1/StashSilex/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/M1/StashSilex
 [link-downloads]: https://packagist.org/packages/M1/StashSilex
