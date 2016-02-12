@@ -27,7 +27,9 @@ class StashServiceProviderTest extends AbstractTest
         $this->assertNull($data);
         $this->assertTrue($item->isMiss());
 
-        $item->set('test', 1200);
+        $item->expiresAfter(1200);
+        $item->set('test');
+        $app['pool']->save($item);
 
         $this->assertFalse($this->isDirEmpty($this->tmp_folder));
 
@@ -122,7 +124,9 @@ class StashServiceProviderTest extends AbstractTest
         $this->assertNull($data);
         $this->assertTrue($item->isMiss());
 
-        $item->set('test', 1200);
+        $item->expiresAfter(1200);
+        $item->set('test');
+        $app['pools']['fs1']->save($item);
 
         $this->assertTrue($this->isDirEmpty($tmp_folder2));
         $item = $app['pools']['fs2']->getItem('hello');
@@ -132,7 +136,9 @@ class StashServiceProviderTest extends AbstractTest
         $this->assertNull($data);
         $this->assertTrue($item->isMiss());
 
-        $item->set('test2', 1200);
+        $item->expiresAfter(1200);
+        $item->set('test2');
+        $app['pools']['fs2']->save($item);
 
         $item = $app['pools']['fs1']->getItem('hello');
         $data = $item->get();

@@ -91,8 +91,10 @@ class StashSessionHandler implements \SessionHandlerInterface
     {
         $item = $this->getItem($sessionId);
         $item->lock();
+        $item->expiresAfter($this->ttl);
+        $item->set($data);
 
-        return $item->set($data, $this->ttl);
+        return $this->pool->save($item);
     }
 
     /**
@@ -112,7 +114,7 @@ class StashSessionHandler implements \SessionHandlerInterface
      */
     public function gc($maxlifetime)
     {
-        return $this->pool->purge();
+        return $this->pool->clear();
     }
 
     /**

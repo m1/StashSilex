@@ -47,6 +47,8 @@ $app->register(new M1\StashSilex\StashServiceProvider(), array(
         ),
     )
 ));
+
+$item = $app['pool']->getItem('path/to/item');
 ```
 
 Registering multiple pools:
@@ -69,6 +71,13 @@ $app->register(new M1\StashSilex\StashServiceProvider(), array(
         ),
     ),
 ));
+
+// same thing
+$item1 = $app['pools']['fs']->getItem('path/to/item');
+$item1 = $app['pool']->getItem('path/to/item');
+
+$item2 = $app['pools']['mc']->getItem('path/to/item');
+
 ```
 
 You can access your pools through `$app['pool']` and `$app['pools']['the_key_of_your_pool']`. If you have multiple pools, then your 
