@@ -2,6 +2,12 @@
 
 All Notable changes to `StashSilex` will be documented in this file
 
+## 1.0.0 - 2016-08-26
+
+### Changed
+- Bump version to 1 due to use in production
+
+
 ## 0.2.0 - 2016-02-12
 
 ### Changed
